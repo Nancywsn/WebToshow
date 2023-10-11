@@ -12,7 +12,7 @@
                 <input type="file" style="font-family: 楷体;" @change="handleFileChange" accept="image/*" />
 
             </el-header>
-            <el-main class="beijing">
+            <el-main>
                 <div>
                     <el-row class="horizontal-row" :gutter="20"> 
                         <el-col style="width: 400px; display: flex; align-items: center; justify-content: center;">
@@ -104,7 +104,7 @@ loadTable(); // 在组件加载时调用数据加载函数
     //opacity:0.6;
 }
 
-.beijing {
+.el-main {
     background-color: rgba(255, 255, 255, 0.7);
 }
 
