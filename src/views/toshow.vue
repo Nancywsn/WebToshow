@@ -1,7 +1,7 @@
 <template>
     <div>
         <!-- 使用加载后的 str 数据 -->
-        <p>{{ str }}</p>
+        <p>{{ data.str.message }}</p>
     </div>
     <div>
         <el-container>
@@ -55,7 +55,7 @@
 <script setup>
 import { ref ,reactive} from 'vue';
 //导航访问后台api
-import { list } from '../api/api'
+import { fromApi,toApi } from '../api/api'
 
 // 使用 ref 声明响应式变量
 const selectedImage = ref(null);
@@ -80,10 +80,11 @@ const data = reactive({
 
 // 加载数据
 const loadTable = async () => {
-    const r = await list();
+    const r = await fromApi();
     data.str = r;
+    console.log('页面显示'+data.str.message)
 };
-
+toApi(data.str);
 loadTable(); // 在组件加载时调用数据加载函数
 
 </script>
