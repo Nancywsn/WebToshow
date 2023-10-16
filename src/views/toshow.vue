@@ -66,7 +66,7 @@ const handleFileChange = (event) => {
             const base64String = reader.result.split(',')[1];
             console.log(base64String);
             // 将 base64String 发送给后端的 API
-            axios.post('http://10.12.54.14:12345/predict', { image_base64: base64String })
+            axios.post('http://10.13.4.225:12345/predict', { image_base64: base64String })
                 .then((response) => {
                     console.log('上传成功', response);
                     console.log(response.data)
