@@ -37,9 +37,11 @@
                             </el-card>
                         </el-col>
                         <el-col style="width: 300px; height: 400px; display: flex; align-items: center; ">
-                            <p class="data" style="font-family: 楷体;">
-                                经过识别，图片中有
-                            </p>
+                            <div class="data" style="font-family: 楷体;">
+                                <p>经过识别，图片中有:</p>
+                                <p>总人数：{{peoNum}}</p>
+                            </div>
+
                         </el-col>
                     </el-row>
                 </div>
@@ -55,7 +57,7 @@ import axios from 'axios';
 // 使用 ref 声明响应式变量
 const selectedImage = ref(null);
 const codeUrl = ref('');
-// const data = ''
+const peoNum = ref();
 var base64String =''
 const handleFileChange = (event) => {
     const file = event.target.files[0];
@@ -63,26 +65,8 @@ const handleFileChange = (event) => {
         // 使用 FileReader 读取文件并在加载完成后更新 selectedImage 值
         const reader = new FileReader();
         reader.onload = function () {
-<<<<<<< HEAD
             selectedImage.value=reader.result
-            const base64String = reader.result.split(',')[1];
-            console.log(base64String);
-            // 将 base64String 发送给后端的 API
-            axios.post('http://10.13.4.225:12345/predict', { image_base64: base64String })
-                .then((response) => {
-                    console.log('上传成功', response);
-                    console.log(response.data)
-                    const data = 'data:image/png;base64,' + response.data.image_base64;
-                    codeUrl.value = data;
-                })
-                .catch((error) => {
-                    console.error('上传失败', error);
-                });
-=======
-            selectedImage.value = reader.result
             base64String = reader.result.split(',')[1];
-            // console.log(base64String);
->>>>>>> refs/remotes/origin/main
         };
         reader.readAsDataURL(file);
     } else {
@@ -91,12 +75,13 @@ const handleFileChange = (event) => {
 };
 const buttonClick = function () {
     // 将 base64String 发送给后端的 API
-    axios.post('http://10.13.4.225:12345/predict', { image_base64: base64String })
+    axios.post('http://10.12.55.111:12345/predict', { image_base64: base64String })
         .then((response) => {
             console.log('上传成功', response);
             console.log(response.data)
             const data = 'data:image/png;base64,' + response.data.image_base64;
             codeUrl.value = data;
+            peoNum.value = response.data.people_number;
         })
         .catch((error) => {
             console.error('上传失败', error);
