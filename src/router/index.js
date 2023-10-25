@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import toshow from '../views/toshow.vue'
+import home from '../views/home.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -7,6 +8,11 @@ const router = createRouter({
     {
       path: '/',
       name: 'home',
+      component: home
+    },
+    {
+      path: '/result',
+      name: 'result',
       component: toshow
     },
   ]
