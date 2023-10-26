@@ -1,13 +1,23 @@
 <template>
-     <!-- <div id="bg"></div> -->
-    <div>
+    <div id="wrapper">
         <el-container>
             <el-header>
+              <el-col>
                 <b>
                     <h1 style="opacity: 0.8; font-family: 楷体;" class="header">雪山搜救--小目标识别 </h1>
                 </b>
+              </el-col>
+              <el-col style="width: 200px;">
+              </el-col>
+              <el-col>
+                <div class="choose">
+                     <input type="file" style="font-family: 楷体; display: inline-block; align-self: center;" @change="handleFileChange" accept="image/*">
+                </div>
+              </el-col>
+
             </el-header>
             <el-main>
+
               <div>
                 <el-row class="horizontal-row2">
                   <el-col class="jianxie">
@@ -29,14 +39,9 @@
                 </el-row>
               </div>
               <div class="main">
-                <el-row>
-                  <div class="choose">
-                     <input type="file" style="font-family: 楷体; display: inline-block; align-self: center;" @change="handleFileChange" accept="image/*">
-                  </div>
-                </el-row>>
                   <div>
                       <el-row class="horizontal-row">
-                          <el-col style="width: 400px; display: flex; align-items: center; justify-content: center;">
+                          <el-col :span="6" class="picture">
                               <el-card shadow="hover"
                                   style="display: flex; flex-direction: row; align-items: center; justify-content: center; height: 100%;">
                                   <div v-if="selectedImage">
@@ -47,7 +52,7 @@
                                   </div>
                               </el-card>
                           </el-col>
-                          <el-col
+                          <el-col :span="6"
                               style="width: 100px; height: 400px; display: flex; flex-direction: column; align-items: center; justify-content: center;"
                               class="mb-4">
                             <el-row style="width: 100px; height: 30px; display: flex; align-items: center; justify-content: center;">
@@ -59,14 +64,14 @@
                             </el-row>
                           </el-col>
 
-                          <el-col style="width: 400px; display: flex; align-items: center; justify-content: center;">
+                          <el-col :span="6" class="picture">
                               <el-card shadow="hover"
                                   style="width: 400px; display: flex; align-items: center; justify-content: center;">
                                   <img :src="codeUrl" style=" max-width: 300px; height: auto; max-height: 400px;" />
                               </el-card>
                           </el-col>
 
-                          <el-col style=" width: 300px; height: 400px; display: flex; flex-direction: column; align-items: center; ">
+                          <el-col :span="6" style=" width: 300px; height: 300px; display: flex; flex-direction: column; align-items: center; ">
                               <p class="data1" style="font-family: 楷体;">
                                   经过识别，图片中
                               </p>
@@ -102,26 +107,26 @@
               </div>
             </el-main>
         </el-container>
+        <div id="bg" style="height: 28%;"></div>
     </div>
 </template>
-    
-<script setup>
+  
+<script>
 import { ref, reactive } from 'vue';
 import axios from 'axios';
-// import * as arrow from "video.js/dist/types/utils/mimetypes";
 
 // 使用 ref 声明响应式变量
 const selectedImage = ref(null);
 const codeUrl = ref('');
 const peoNum = ref();
-var base64String =''
+var base64String = ''
 const handleFileChange = (event) => {
     const file = event.target.files[0];
     if (file) {
         // 使用 FileReader 读取文件并在加载完成后更新 selectedImage 值
         const reader = new FileReader();
         reader.onload = function () {
-            selectedImage.value=reader.result
+            selectedImage.value = reader.result
             base64String = reader.result.split(',')[1];
         };
         reader.readAsDataURL(file);
@@ -143,23 +148,25 @@ const buttonClick = function () {
             console.error('上传失败', error);
         });
 }
-
-// xx
-// const slider = document.getElementById("slider");
-// slider.addEventListener("input", function(e) {
-//   document.querySelector(".foreground-img").style.width =
-//     e.target.value + "%";
-// });
-
-
-
 </script>
+  
+<style lang="scss" scoped>
+@import "../assets/css/main.css";
 
+h1 {
+    color: white;
+}
 
-<style scoped lang="scss">
-// @import "../assets/css/main.css";
+p {
+    color: white;
+}
+
+.el-link {
+    color: white;
+}
+
 .header {
-    font-size: 60px;
+    font-size: 40px;
     /* 你可以根据需要调整字体大小，单位可以是像素(px)、em等 */
 }
 
@@ -171,7 +178,8 @@ const buttonClick = function () {
 }
 
 .main {
-    background-color: rgba(255, 255, 255, 0.7);
+  background-color: rgba(255, 255, 255, 0.5);
+  height: 400px;
 }
 
 .display{
@@ -187,9 +195,9 @@ const buttonClick = function () {
 }
 
 .jianxie {
-  height: 35px;
+  height: 30px;
   width: 200px;
-  background-color: rgba(255, 255, 255, 0.7);
+  background-color: rgba(255, 255, 255, 0.4);
   border-left-color: white;
   border-right-color: white;
   border-top-color: white;
@@ -232,7 +240,7 @@ const buttonClick = function () {
 }
 
 .el-header {
-    height: 20vh;
+    height: 60px;
     //background-color: rgb(255,255,255);
     //background-image: url("src/assets/SnowMountain(1).png");
     //opacity:0.9;
@@ -241,8 +249,16 @@ const buttonClick = function () {
     justify-content: center; //水平布局 
     align-items: center; //垂直居中
 }
+.picture{
+  width: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
 .el-col {
     align-self: center;
 }
 </style>
+
+  
