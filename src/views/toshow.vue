@@ -2,14 +2,12 @@
     <div id="wrapper">
         <el-container>
             <el-header>
-              <el-col>
+              <el-col :span="16">
                 <b>
-                    <h1 style="opacity: 0.8; font-family: 楷体;" class="header">雪山搜救--小目标识别 </h1>
+                    <h1 class="header">雪山搜救--小目标识别 </h1>
                 </b>
               </el-col>
-              <el-col style="width: 200px;">
-              </el-col>
-              <el-col>
+              <el-col :span="8">
                 <div class="choose">
                      <input type="file" style="font-family: 楷体; display: inline-block; align-self: center;" @change="handleFileChange" accept="image/*">
                 </div>
@@ -17,110 +15,110 @@
 
             </el-header>
             <el-main>
-
-              <div>
                 <el-row class="horizontal-row2">
-                  <el-col class="jianxie">
-                    <div>
+                  <el-col :span="8">
+                    <div class="jianxie">
                       <p class="display">输 入 图 片
                       </p>
                     </div>
                   </el-col>
-                  <el-col style="width: 100px;">
+                  <el-col :span="3">
                   </el-col>
-                  <el-col class="jianxie">
+                  <el-col :span="7">
+                    <div  class="jianxie">
                     <p class="display">     输 出 图 片
                     </p>
+                    </div>
                   </el-col>
-                  <el-col class="jianxie">
+                  <el-col :span="6">
+                    <div class="jianxie" style="width: 140px;">
                     <p class="display">     识 别 数 据
                     </p>
+                    </div>
                   </el-col>
                 </el-row>
-              </div>
-              <div class="main">
-                  <div>
-                      <el-row class="horizontal-row">
-                          <el-col :span="6" class="picture">
-                              <el-card shadow="hover"
-                                  style="display: flex; flex-direction: row; align-items: center; justify-content: center; height: 100%;">
-                                  <div v-if="selectedImage">
+                <el-row class="main">
+                    <el-col :span="8" class="picture">
+                        <el-card shadow="hover"
+                            style="display: flex; flex-direction: row; align-items: center; justify-content: center; height: 100%;">
+                            <div v-if="selectedImage">
 
-                                      <!--      显示图片     -->
-                                      <img :src="selectedImage" alt="Selected Image"
-                                          style="width: 300px; height: auto; max-height: 400px;" />
-                                  </div>
-                              </el-card>
-                          </el-col>
-                          <el-col :span="6"
-                              style="width: 100px; height: 400px; display: flex; flex-direction: column; align-items: center; justify-content: center;"
-                              class="mb-4">
-                            <el-row style="width: 100px; height: 30px; display: flex; align-items: center; justify-content: center;">
-                              <el-button size="large" class="button" @click="buttonClick" style="font-family: 楷体;"
-                                  round>识别</el-button>
-                            </el-row>
-                            <el-row style="width: 100px; height: 60px; display: flex; align-items: center; justify-content: center;">
-                                  <img src= "src/assets/arrow55.png" alt="" style="opacity: 0.8; width: 100px; height: 50px;"/>
-                            </el-row>
-                          </el-col>
-
-                          <el-col :span="6" class="picture">
-                              <el-card shadow="hover"
-                                  style="width: 400px; display: flex; align-items: center; justify-content: center;">
-                                  <img :src="codeUrl" style=" max-width: 300px; height: auto; max-height: 400px;" />
-                              </el-card>
-                          </el-col>
-
-                          <el-col :span="6" style=" width: 300px; height: 300px; display: flex; flex-direction: column; align-items: center; ">
-                              <p class="data1" style="font-family: 楷体;">
-                                  经过识别，图片中
-                              </p>
-                              <p class="data1" style="font-family: 楷体;">
-                                 识别到人员总数：{{peoNum}}
-                              </p>
-                            <div style="width: 250px; height: 50px; display: flex; align-items: center; flex-direction: row;">
-                              <el-col>
-                                <p class="data2" style="font-family: 楷体;">
-                                  是否投放救生包:
-                                </p>
-                              </el-col>
-                              <el-col>
-                                  <el-button size="large" class="button" @click="buttonClick" style="font-family: 楷体;"
-                                  round>投放</el-button>
-                              </el-col>
+                                <!--      显示图片     -->
+                                <img :src="selectedImage" alt="Selected Image"
+                                    style="width: 300px; height: auto; max-height: 400px;" />
                             </div>
-                            <div style="width: 250px; height: 50px; display: flex; align-items: center; flex-direction: row;">
-                              <el-col>
-                                <p class="data2" style="font-family: 楷体;">
-                                  是否请求更多相关图片:
-                                </p>
-                              </el-col>
-                              <el-col>
-                                  <el-button size="large" class="button" @click="buttonClick" style="font-family: 楷体;"
-                                  round>请求</el-button>
-                              </el-col>
-                            </div>
-
-                          </el-col>
+                        </el-card>
+                    </el-col>
+                    <el-col :span="2" style="height: 400px; display: flex; flex-direction: column; align-items: center; justify-content: center;"
+                        class="mb-4">
+                      <el-row
+                          style=" height: 30px; display: flex; align-items: center; justify-content: center;">
+                          <el-button size="large" class="button" @click="buttonClick" style="font-family: 楷体;"
+                             round>识别</el-button>
                       </el-row>
-                  </div>
-              </div>
+                      <el-row style="height: 60px; display: flex; align-items: center; justify-content: center;">
+                            <img src= "src/assets/arrow55.png" alt="" style="opacity: 0.8; width: 100px; height: 50px;"/>
+                      </el-row>
+                    </el-col>
+
+                    <el-col :span="8" class="picture">
+                        <el-card shadow="hover"
+                            style="display: flex; align-items: center; justify-content: center;">
+                            <img :src="codeUrl" style=" max-width: 300px; height: auto; max-height: 400px;" />
+                        </el-card>
+                    </el-col>
+
+                    <el-col :span="6" style="height: 300px; display: flex; flex-direction: column;">
+                        <p class="data1" style="font-family: 楷体;">
+                            经过识别，图片中
+                        </p>
+                        <p class="data1" style="font-family: 楷体;">
+                           识别到人员总数：{{peoNum}}
+                        </p>
+                      <div style="height: 60px; display: flex; flex-direction: row;">
+                        <el-col :span="13">
+                          <p class="data1" style="font-family: 楷体;">
+                            是否投放救生包:
+                          </p>
+                        </el-col>
+                        <el-col :span="3">
+                            <el-button size="large" class="button" @click="buttonClick_1" style="font-family: 楷体; justify-content: center;"
+                            round>投放</el-button>
+                        </el-col>
+                      </div>
+                      <div style="height: 60px; display: flex; flex-direction: row;">
+                        <el-col :span="16">
+                          <p class="data1" style="font-family: 楷体;">是否请求更多相关图片:
+                          </p>
+                        </el-col>
+                        <el-col :span="3">
+                            <el-button size="large" class="button" @click="buttonClick_2" style="font-family: 楷体; justify-content: center;"
+                            round>请求</el-button>
+                        </el-col>
+                      </div>
+                    </el-col>
+                </el-row>
             </el-main>
         </el-container>
-        <div id="bg" style="height: 28%;"></div>
+        <div id="bg" style="height: 27%;"></div>
     </div>
 </template>
   
-<script>
+<script setup>
 import { ref, reactive } from 'vue';
 import axios from 'axios';
+import { $msg_s, $msg_e, $confirm } from '../utils/msg.js'
 
 // 使用 ref 声明响应式变量
 const selectedImage = ref(null);
 const codeUrl = ref('');
 const peoNum = ref();
 var base64String = ''
+console.log('script');
+
 const handleFileChange = (event) => {
+    console.log('handleFileChange');
+
     const file = event.target.files[0];
     if (file) {
         // 使用 FileReader 读取文件并在加载完成后更新 selectedImage 值
@@ -130,6 +128,7 @@ const handleFileChange = (event) => {
             base64String = reader.result.split(',')[1];
         };
         reader.readAsDataURL(file);
+        console.log('selectedImage');
     } else {
         selectedImage.value = null;
     }
@@ -146,6 +145,29 @@ const buttonClick = function () {
         })
         .catch((error) => {
             console.error('上传失败', error);
+        });
+}
+
+const buttonClick_1 = function () {
+    console.log('buttonClick_1')
+    $confirm('确定投放救生包？')
+        .then(() => {
+            // 用户点击了确定按钮
+            $msg_s('已投放救生包')
+        })
+        .catch(() => {
+            $msg_e('取消投放')
+            // 用户点击了取消按钮，什么都不做
+        });
+}
+const buttonClick_2 = function () {
+    console.log('buttonClick_2')
+    $confirm('是否请求更多相关图片？')
+        .then(() => {
+            $msg_s('请求更多相关图片')
+        })
+        .catch(() => {
+            $msg_e('取消申请')
         });
 }
 </script>
@@ -166,20 +188,30 @@ p {
 }
 
 .header {
+    opacity: 0.9;
+    font-family: 楷体;
+    text-align: center;
+    position:relative;
+  bottom: 0;
+    //align-items: flex-end;
     font-size: 40px;
+    text-shadow: 5px 5px 5px gray;
     /* 你可以根据需要调整字体大小，单位可以是像素(px)、em等 */
 }
 
 .data1 {
     width: 250px;
     height: 50px;
+    text-shadow: 2px 2px 3px gray;
+    justify-content: center;
     //background-color: rgb(255,255,255);
     //opacity:0.6;
 }
 
 .main {
+  display: flex;
   background-color: rgba(255, 255, 255, 0.5);
-  height: 400px;
+  //height: 400px;
 }
 
 .display{
@@ -192,11 +224,13 @@ p {
   line-height: 30px;
   font-family: 楷体;
 
+  text-shadow: 3px 3px 5px gray;
+
 }
 
 .jianxie {
   height: 30px;
-  width: 200px;
+  width: 160px;
   background-color: rgba(255, 255, 255, 0.4);
   border-left-color: white;
   border-right-color: white;
@@ -213,8 +247,8 @@ p {
   /* 一个值表示四个角 */
   border-radius: 10px 10px 0px 0px;
   border-bottom: none;
-  margin-left: 100px;
-  margin-right: 100px;
+  margin-left: 80px;
+  margin-right: 80px;
 }
 
 
@@ -222,35 +256,33 @@ p {
     font-size: 17px
 }
 
-.horizontal-row {
-    display: flex;
-    /* 使用 flex 布局来实现水平排列 */
-    justify-content: space-between;
-    /* 在 el-col 之间添加空白间隔 */
-}
+
 .horizontal-row2{
-  display: flex;
+  //display: flex;
 }
 
-.choose{
-    height: 40px;
+.choose {
     display: flex;
     justify-content: center; //水平布局
     align-items: center; //垂直居中
 }
 
 .el-header {
-    height: 60px;
+    height: 50px;
     //background-color: rgb(255,255,255);
     //background-image: url("src/assets/SnowMountain(1).png");
     //opacity:0.9;
     //background-color: transparent;
     display: flex;
-    justify-content: center; //水平布局 
+    justify-content: center; //水平布局
     align-items: center; //垂直居中
 }
+
+.el-main{
+  height: 430px;
+}
 .picture{
-  width: 400px;
+  width: 360px;
   display: flex;
   align-items: center;
   justify-content: center;

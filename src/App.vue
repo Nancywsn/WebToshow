@@ -21,7 +21,7 @@ body {
   /* background-image: url("src/assets/SnowMountain(2).png"); */
   background-color: #348cb2;
   /* background-image: url("src/assets/css/images/bg.jpg"); */
-  /* background-size:140% 140%; */
+  background-size:73%;
   background-repeat: no-repeat;
   /* 防止图片重复平铺 */
   background-attachment: fixed;
