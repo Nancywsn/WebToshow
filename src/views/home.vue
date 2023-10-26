@@ -8,12 +8,17 @@
                 <h1>雪地搜救</h1>
                 <p>&nbsp;&bull;&nbsp; 无人机小目标检测 &nbsp;&bull;&nbsp;</p>
                 <nav>
-                    <el-link href="/result" >Start</el-link>
+                    <ul>
+                        <li>
+                            <a href="/result" class="icon solid" title="Start">
+                            </a>
+                        </li>
+                    </ul>
                 </nav>
             </header>
             <!-- Footer -->
             <footer id="footer">
-                <span class="copyright"> 2023 小组丨华中科技大学</span>
+                <span> 2023丨华中科技大学</span>
             </footer>
         </div>
     </div>
@@ -24,9 +29,19 @@
 </script>
   
 <style lang="scss" scoped>
-
 @import "../assets/css/main.css";
 
+h1 {
+    color: white;
+}
+
+p {
+    color: white;
+}
+
+.el-link {
+    color: white;
+}
 </style>
 
   

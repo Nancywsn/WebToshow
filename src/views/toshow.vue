@@ -1,12 +1,11 @@
 <template>
+     <!-- <div id="bg"></div> -->
     <div>
         <el-container>
             <el-header>
                 <b>
                     <h1 style="opacity: 0.8; font-family: 楷体;" class="header">雪山搜救--小目标识别 </h1>
                 </b>
-
-
             </el-header>
             <el-main>
                 <div class="choose">
@@ -25,21 +24,6 @@
                                 </div>
                             </el-card>
                         </el-col>
-
-<!--                      <div class="container">-->
-<!--                        <div class="img background-img"></div>-->
-<!--                        <div class="img foreground-img"></div>-->
-<!--                        <input-->
-<!--                          type="range"-->
-<!--                          min="1"-->
-<!--                          max="100"-->
-<!--                          value="50"-->
-<!--                          class="slider"-->
-<!--                          name="slider"-->
-<!--                          id="slider"-->
-<!--                        />-->
-<!--                      </div>-->
-
                         <el-col
                             style="width: 100px; height: 400px; display: flex; flex-direction: column; align-items: center; justify-content: center;"
                             class="mb-4">
@@ -149,62 +133,11 @@ const buttonClick = function () {
 
 
 <style scoped lang="scss">
-
+// @import "../assets/css/main.css";
 .header {
     font-size: 70px;
     /* 你可以根据需要调整字体大小，单位可以是像素(px)、em等 */
 }
-
-///*xx*/
-//.container {
-//  position: relative;
-//  width: 900px;
-//  height: 600px;
-//  border: 2px solid white;
-//}
-//.img {
-//  position: absolute;
-//  top: 0;
-//  left: 0;
-//  width: 100%;
-//  height: 100%;
-//  background-size: 900px 100%;
-//}
-//.background-img {
-//  background-image: url("/src/assets/images/6.jpg");
-//}
-//.foreground-img {
-//  background-image: url("/src/assets/images/7.jpg");
-//  width: 50%;
-//}
-//
-//.slider {
-//  display: flex;
-//  justify-content: center;
-//  align-items: center;
-//  position: absolute;
-//  -webkit-appearance: none;
-//  appearance: none;
-//  width: 100%;
-//  height: 100%;
-//  background: rgba(242, 242, 241, 0.3);
-//  outline: none;
-//  margin: 0;
-//  transition: all 0.2s;
-//}
-//.slider:hover {
-//  background: rgba(242, 242, 241, 0.1);
-//}
-//.slider::-webkit-slider-thumb {
-//  -webkit-appearance: none;
-//  appearance: none;
-//  width: 6px;
-//  height: 600px;
-//  background: white;
-//  cursor: pointer;
-//}
-
-
 
 .data1 {
     width: 250px;
