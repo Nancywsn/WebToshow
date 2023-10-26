@@ -13,9 +13,8 @@
                 </div>
                 <div>
                     <el-row class="horizontal-row">
-                        <el-col style="width: 400px; display: flex; align-items: center; justify-content: center;">
-                            <el-card shadow="hover"
-                                style="display: flex; flex-direction: row; align-items: center; justify-content: center; height: 100%;">
+                        <el-col :span="6" style="width: 400px; display: flex; align-items: center; justify-content: center;">
+                            <el-card shadow="hover" style="display: flex; flex-direction: row; align-items: center; justify-content: center; height: 100%;">
                                 <div v-if="selectedImage">
 
                                     <!--      显示图片     -->
@@ -24,8 +23,7 @@
                                 </div>
                             </el-card>
                         </el-col>
-                        <el-col
-                            style="width: 100px; height: 400px; display: flex; flex-direction: column; align-items: center; justify-content: center;"
+                        <el-col :span="6" style="width: 100px; height: 400px; display: flex; flex-direction: column; align-items: center; justify-content: center;"
                             class="mb-4">
                             <el-row
                                 style="width: 100px; height: 30px; display: flex; align-items: center; justify-content: center;">
@@ -39,14 +37,13 @@
                             </el-row>
                         </el-col>
 
-                        <el-col style="width: 400px; display: flex; align-items: center; justify-content: center;">
-                            <el-card shadow="hover"
-                                style="width: 400px; display: flex; align-items: center; justify-content: center;">
+                        <el-col :span="6" style="width: 400px; display: flex; align-items: center; justify-content: center;">
+                            <el-card shadow="hover" style="display: flex; align-items: center; justify-content: center;">
                                 <img :src="codeUrl" style=" max-width: 300px; height: auto; max-height: 400px;" />
                             </el-card>
                         </el-col>
 
-                        <el-col
+                        <el-col :span="6"
                             style=" width: 300px; height: 400px; display: flex; flex-direction: column; align-items: center; ">
                             <p class="data1" style="font-family: 楷体;">
                                 经过识别，图片中
@@ -62,7 +59,7 @@
                                     </p>
                                 </el-col>
                                 <el-col>
-                                    <el-button size="large" class="button" @click="buttonClick" style="font-family: 楷体;"
+                                    <el-button size="large" class="button" @click="buttonClick_1" style="font-family: 楷体;"
                                         round>投放</el-button>
                                 </el-col>
                             </div>
@@ -74,7 +71,7 @@
                                     </p>
                                 </el-col>
                                 <el-col>
-                                    <el-button size="large" class="button" @click="buttonClick" style="font-family: 楷体;"
+                                    <el-button size="large" class="button" @click="buttonClick_2" style="font-family: 楷体;"
                                         round>请求</el-button>
                                 </el-col>
                             </div>
@@ -88,16 +85,21 @@
     </div>
 </template>
   
-<script>
+<script setup>
 import { ref, reactive } from 'vue';
 import axios from 'axios';
+import { $msg_s, $msg_e, $confirm } from '../utils/msg.js'
 
 // 使用 ref 声明响应式变量
 const selectedImage = ref(null);
 const codeUrl = ref('');
 const peoNum = ref();
 var base64String = ''
+console.log('script');
+
 const handleFileChange = (event) => {
+    console.log('handleFileChange');
+
     const file = event.target.files[0];
     if (file) {
         // 使用 FileReader 读取文件并在加载完成后更新 selectedImage 值
@@ -107,6 +109,7 @@ const handleFileChange = (event) => {
             base64String = reader.result.split(',')[1];
         };
         reader.readAsDataURL(file);
+        console.log('selectedImage');
     } else {
         selectedImage.value = null;
     }
@@ -123,6 +126,29 @@ const buttonClick = function () {
         })
         .catch((error) => {
             console.error('上传失败', error);
+        });
+}
+
+const buttonClick_1 = function () {
+    console.log('buttonClick_1')
+    $confirm('确定投放救生包？')
+        .then(() => {
+            // 用户点击了确定按钮
+            $msg_s('已投放救生包')
+        })
+        .catch(() => {
+            $msg_e('取消投放')
+            // 用户点击了取消按钮，什么都不做
+        });
+}
+const buttonClick_2 = function () {
+    console.log('buttonClick_2')
+    $confirm('是否请求更多相关图片？')
+        .then(() => {
+            $msg_s('请求更多相关图片')
+        })
+        .catch(() => {
+            $msg_e('取消申请')
         });
 }
 </script>
@@ -168,7 +194,7 @@ p {
     /* 在 el-col 之间添加空白间隔 */
 }
 
-.choose{
+.choose {
     height: 40px;
     display: flex;
     justify-content: center; //水平布局
