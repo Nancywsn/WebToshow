@@ -1,16 +1,90 @@
 <template>
     <div id="wrapper">
-        <!-- <div id="bg"></div> -->
-        <div id="main">
-            <input type="file" @change="handleFileChange" accept="image/*">
-            <el-card shadow="hover"
-                style="display: flex; flex-direction: row; align-items: center; justify-content: center; height: 100%;">
-                hello
-                <div v-if="selectedImage">
-                    <img :src="selectedImage" alt="Selected Image" style="width: 300px; height: auto; max-height: 400px;" />
+        <el-container>
+            <el-header>
+                <b>
+                    <h1 style="opacity: 0.8; font-family: 楷体;" class="header">雪山搜救--小目标识别 </h1>
+                </b>
+            </el-header>
+            <el-main>
+                <div class="choose">
+                    <input type="file" style="font-family: 楷体; display: inline-block; align-self: center;"
+                        @change="handleFileChange" accept="image/*">
                 </div>
-            </el-card>
-        </div>
+                <div>
+                    <el-row class="horizontal-row">
+                        <el-col style="width: 400px; display: flex; align-items: center; justify-content: center;">
+                            <el-card shadow="hover"
+                                style="display: flex; flex-direction: row; align-items: center; justify-content: center; height: 100%;">
+                                <div v-if="selectedImage">
+
+                                    <!--      显示图片     -->
+                                    <img :src="selectedImage" alt="Selected Image"
+                                        style="width: 300px; height: auto; max-height: 400px;" />
+                                </div>
+                            </el-card>
+                        </el-col>
+                        <el-col
+                            style="width: 100px; height: 400px; display: flex; flex-direction: column; align-items: center; justify-content: center;"
+                            class="mb-4">
+                            <el-row
+                                style="width: 100px; height: 30px; display: flex; align-items: center; justify-content: center;">
+                                <el-button size="large" class="button" @click="buttonClick" style="font-family: 楷体;"
+                                    round>识别</el-button>
+                            </el-row>
+                            <el-row
+                                style="width: 100px; height: 60px; display: flex; align-items: center; justify-content: center;">
+                                <img src="src/assets/arrow55.png" alt=""
+                                    style="opacity: 0.8; width: 100px; height: 50px;" />
+                            </el-row>
+                        </el-col>
+
+                        <el-col style="width: 400px; display: flex; align-items: center; justify-content: center;">
+                            <el-card shadow="hover"
+                                style="width: 400px; display: flex; align-items: center; justify-content: center;">
+                                <img :src="codeUrl" style=" max-width: 300px; height: auto; max-height: 400px;" />
+                            </el-card>
+                        </el-col>
+
+                        <el-col
+                            style=" width: 300px; height: 400px; display: flex; flex-direction: column; align-items: center; ">
+                            <p class="data1" style="font-family: 楷体;">
+                                经过识别，图片中
+                            </p>
+                            <p class="data1" style="font-family: 楷体;">
+                                识别到人员总数：{{ peoNum }}
+                            </p>
+                            <div
+                                style="width: 250px; height: 50px; display: flex; align-items: center; flex-direction: row;">
+                                <el-col>
+                                    <p class="data2" style="font-family: 楷体;">
+                                        是否投放救生包:
+                                    </p>
+                                </el-col>
+                                <el-col>
+                                    <el-button size="large" class="button" @click="buttonClick" style="font-family: 楷体;"
+                                        round>投放</el-button>
+                                </el-col>
+                            </div>
+                            <div
+                                style="width: 250px; height: 50px; display: flex; align-items: center; flex-direction: row;">
+                                <el-col>
+                                    <p class="data2" style="font-family: 楷体;">
+                                        是否请求更多相关图片:
+                                    </p>
+                                </el-col>
+                                <el-col>
+                                    <el-button size="large" class="button" @click="buttonClick" style="font-family: 楷体;"
+                                        round>请求</el-button>
+                                </el-col>
+                            </div>
+
+                        </el-col>
+                    </el-row>
+                </div>
+            </el-main>
+        </el-container>
+        <div id="bg" style="height: 40%;"></div>
     </div>
 </template>
   
@@ -68,13 +142,51 @@ p {
     color: white;
 }
 
-.input {
-    // height: 40px;
-    // display: flex;
-    // justify-content: center; //水平布局
-    // align-items: center; //垂直居中
-    font-family: 楷体;
-    display: inline-block;
+.header {
+    font-size: 70px;
+}
+
+.data1 {
+    width: 250px;
+    height: 50px;
+    //background-color: rgb(255,255,255);
+    //opacity:0.6;
+}
+
+.el-main {
+    background-color: rgba(255, 255, 255, 0.7);
+}
+
+.button {
+    font-size: 17px
+}
+
+.horizontal-row {
+    display: flex;
+    /* 使用 flex 布局来实现水平排列 */
+    justify-content: space-between;
+    /* 在 el-col 之间添加空白间隔 */
+}
+
+.choose{
+    height: 40px;
+    display: flex;
+    justify-content: center; //水平布局
+    align-items: center; //垂直居中
+}
+
+.el-header {
+    height: 20vh;
+    //background-color: rgb(255,255,255);
+    //background-image: url("src/assets/SnowMountain(1).png");
+    //opacity:0.9;
+    //background-color: transparent;
+    display: flex;
+    justify-content: center; //水平布局 
+    align-items: center; //垂直居中
+}
+
+.el-col {
     align-self: center;
 }
 </style>
